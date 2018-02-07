@@ -28,9 +28,9 @@ setup:
 ##geos
 $(TARGET)/lib/libgeos.so:
 	(cd build-dir \
-	 && wget $(WGET_FLAGS) http://download.osgeo.org/geos/geos-3.5.0.tar.bz2 \
-	 && tar -xjf geos-3.5.0.tar.bz2 \
-	 && cd geos-3.5.0 \
+	 && wget $(WGET_FLAGS) http://download.osgeo.org/geos/geos-3.6.2.tar.bz2 \
+	 && tar -xjf geos-3.6.2.tar.bz2 \
+	 && cd geos-3.6.2 \
 	 && ./configure --prefix=$(TARGET) --enable-python \
 	 && make \
 	 && make install)
@@ -38,9 +38,9 @@ $(TARGET)/lib/libgeos.so:
 ##gdal
 $(TARGET)/bin/gdalinfo: $(TARGET)/lib/libgeos.so
 	(cd build-dir \
-	 && wget $(WGET_FLAGS) http://download.osgeo.org/gdal/2.2.1/gdal-2.2.1.tar.gz \
-	 && tar xzf gdal-2.2.1.tar.gz \
-	 && cd gdal-2.2.1 \
+	 && wget $(WGET_FLAGS) http://download.osgeo.org/gdal/2.2.3/gdal-2.2.3.tar.gz \
+	 && tar xzf gdal-2.2.3.tar.gz \
+	 && cd gdal-2.2.3 \
 	 && ./configure --prefix=$(TARGET) --without-grass --with-netcdf --with-python --with-hdf5 --with-geos=$(TARGET)/bin/geos-config \
 	 && make \
 	 && make install)
@@ -61,9 +61,9 @@ $(TARGET)/bin/grass72: $(TARGET)/bin/gdalinfo
 ##GDAL_GRASS
 $(TARGET)/lib/gdalplugins/gdal_GRASS.so: $(TARGET)/bin/grass72 $(TARGET)/bin/gdalinfo
 	(cd build-dir \
-	 && wget $(WGET_FLAGS) http://download.osgeo.org/gdal/2.1.3/gdal-grass-2.1.3.tar.gz \
-	 && tar xzf gdal-grass-2.1.3.tar.gz \
-	 && cd gdal-grass-2.1.3 \
+	 && wget $(WGET_FLAGS) http://download.osgeo.org/gdal/2.2.3/gdal-grass-2.2.3.tar.gz \
+	 && tar xzf gdal-grass-2.2.3.tar.gz \
+	 && cd gdal-grass-2.2.3 \
 	 && export LDFLAGS="-L$(TARGET)/grass-7.2.2/lib" \
 	 && ./configure --with-gdal=$(TARGET)/bin/gdal-config --with-grass=$(TARGET)/grass-7.2.2 --prefix=$(TARGET) \
 	 && make \
