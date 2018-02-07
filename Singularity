@@ -90,9 +90,9 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         zlib1g-dev \
 
     cd /tmp && \
-       wget -nv http://ccl.cse.nd.edu/software/files/cctools-6.0.16-source.tar.gz && \
-       tar xzf cctools-6.0.16-source.tar.gz && \
-       cd cctools-6.0.16-source && \
+       wget -nv http://ccl.cse.nd.edu/software/files/cctools-6.2.4-source.tar.gz && \
+       tar xzf cctools-6.2.4-source.tar.gz && \
+       cd cctools-6.2.4-source && \
        ./configure --prefix=/opt/eemt && \
        make && \
        make install
