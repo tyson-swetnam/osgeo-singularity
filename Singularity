@@ -6,10 +6,10 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     cp gis_dependency.makefile $SINGULARITY_ROOTFS/tmp/
 
 %environment
-    GISBASE=/opt/eemt/grass-7.2.1
+    GISBASE=/opt/eemt/grass-7.2.2
     GRASS_PROJSHARE=/usr/share/proj
-    LD_LIBRARY_PATH=/opt/eemt/lib:/opt/eemt/grass-7.2.1/lib
-    PATH=/opt/eemt/bin:/opt/eemt/grass-7.2.1/bin:$PATH
+    LD_LIBRARY_PATH=/opt/eemt/lib:/opt/eemt/grass-7.2.2/lib
+    PATH=/opt/eemt/bin:/opt/eemt/grass-7.2.2/bin:$PATH
     PYTHONPATH=/opt/eemt/lib/python2.7/site-packages
     export GISBASE GRASS_PROJSHARE LD_LIBRARY_PATH PATH PYTHONPATH
 
@@ -105,7 +105,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     cd /etc/ld.so.conf.d
     echo "/opt/eemt/lib" >eemt.conf
     echo "/opt/eemt/lib64" >>eemt.conf
-    echo "/opt/eemt/grass-7.2.1/lib" >grass.conf
+    echo "/opt/eemt/grass-7.2.2/lib" >grass.conf
     ldconfig
 
     # build info
