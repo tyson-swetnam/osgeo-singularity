@@ -1,6 +1,5 @@
 ##!/usr/bin/make
 
-
 TARGET := /opt/eemt
 
 SHELL := /bin/bash
@@ -16,10 +15,8 @@ WGET_FLAGS := -nv --no-check-certificate
 
 .PHONY: all setup
 
-
 # list base packages as well as top level goals
 all: setup $(TARGET)/lib/gdalplugins/gdal_GRASS.so $(TARGET)/bin/saga-gis
-
 
 setup:
 	@rm -rf build-dir
@@ -45,7 +42,6 @@ $(TARGET)/bin/gdalinfo: $(TARGET)/lib/libgeos.so
 	 && make \
 	 && make install)
 
-
 ##GRASS
 $(TARGET)/bin/grass74: $(TARGET)/bin/gdalinfo
 	(cd build-dir \
@@ -57,7 +53,6 @@ $(TARGET)/bin/grass74: $(TARGET)/bin/gdalinfo
 	 && (make || make || make) \
 	 && make install)
 
-
 ##GDAL_GRASS
 $(TARGET)/lib/gdalplugins/gdal_GRASS.so: $(TARGET)/bin/grass74 $(TARGET)/bin/gdalinfo
 	(cd build-dir \
@@ -68,7 +63,6 @@ $(TARGET)/lib/gdalplugins/gdal_GRASS.so: $(TARGET)/bin/grass74 $(TARGET)/bin/gda
 	 && ./configure --with-gdal=$(TARGET)/bin/gdal-config --with-grass=$(TARGET)/grass-7.4.0 --prefix=$(TARGET) \
 	 && make \
 	 && make install)
-
 
 ##Saga
 $(TARGET)/bin/saga-gis: $(TARGET)/bin/grass74 $(TARGET)/lib/gdalplugins/gdal_GRASS.so
