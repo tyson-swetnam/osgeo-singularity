@@ -89,6 +89,12 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         wx-common \
         zlib1g-dev \
 
+# set locale (this fixes an error we had in GRASS environment on startup)
+    locale-gen en_US en_US.UTF-8
+    dpkg-reconfigure locales 
+    echo "LC_ALL=en_US.UTF-8" >> /etc/environment
+    echo "LANG=en_US.UTF-8" >> /etc/environment
+
     cd /tmp && \
        wget -nv http://ccl.cse.nd.edu/software/files/cctools-6.2.4-source.tar.gz && \
        tar xzf cctools-6.2.4-source.tar.gz && \
@@ -97,16 +103,30 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
        make && \
        make install
 
-    cd /tmp && make -f gis_dependency.makefile
+ cd /tmp && make -f gis_dependency.makefile
 
     rm -rf /tmp/build-dir /tmp/cctools*
 
     echo "Updating library paths"
     cd /etc/ld.so.conf.d
-    echo "/opt/eemt/lib" >eemt.conf
-    echo "/opt/eemt/lib64" >>eemt.conf
-    echo "/opt/eemt/grass-7.4.0/lib" >grass.conf
+    echo "/opt/eemt/lib" >> eemt.conf
+    echo "/opt/eemt/lib64" >> eemt.conf
+    echo "/opt/eemt/grass-7.4.0/lib" >> grass.conf
     ldconfig
 
-    # build info
+# once everything is built, we can install GRASS extensions
+# Create a dummy mapset so we can install Addons
+# Run GRASS74 and Install Addons
+    
+    export LC_ALL=en_US.UTF-8 && \
+        export LANG=en_US.UTF-8 && \
+        export PATH=/opt/eemt/bin:/opt/eemt/grass-7.4.0/bin:/opt/eemt/grass-7.4.0/scripts/:$PATH && \
+        export GISBASE=/opt/eemt/grass-7.4.0 && \
+        rm -rf mytmp_wgs84 && \
+        grass74 -text -c epsg:3857 ${PWD}/mytmp_wgs84 -e && \
+        echo "g.extension -s extension=r.sun.mp ; g.extension -s extension=r.sun.hourly ; g.extension -s extension=r.sun.daily" | grass74 -text ${PWD}/mytmp_wgs84/PERMANENT
+
+# build info
     echo "Timestamp:" `date --utc` | tee /image-build-info.txt
+
+
