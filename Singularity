@@ -110,4 +110,3 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
     # build info
     echo "Timestamp:" `date --utc` | tee /image-build-info.txt
-
