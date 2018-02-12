@@ -43,7 +43,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         libfreetype6-dev \
         libgcc1 \
         libglu1-mesa-dev \
-        libgsl-dev \
+        libgsl0-dev \
         libgtk2.0-dev \
         libgtkmm-3.0-dev \
         libjasper-dev \
