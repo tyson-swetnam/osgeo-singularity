@@ -9,5 +9,4 @@ TS=`date +'%Y%m%d'`
 BASENAME="eemt-v$TS"
 
 rm -f $BASENAME.img
-singularity create --size 4000 $BASENAME.img
-singularity bootstrap $BASENAME.simg Singularity
+singularity build $BASENAME.simg Singularity
