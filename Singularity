@@ -138,9 +138,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     add-apt-repository ppa:ubuntugis/ubuntugis-unstable
     
 # Add QGIS keys
-    wget -O - https://qgis.org/downloads/qgis-2017.gpg.key | gpg --import
-    gpg --fingerprint CAEB3DC3BDF7FB45
-    gpg --export --armor CAEB3DC3BDF7FB45 | sudo apt-key add -
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-key CAEB3DC3BDF7FB45
 
 # Install QGIS w/ Python
     apt-get -y update
