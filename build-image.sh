@@ -1,5 +1,5 @@
 #!/bin/bash
-# Ubuntu 16.04 Xenial 
+# Ubuntu 17.04 Zesty
 # testing new  build
 
 # install debootstrap
