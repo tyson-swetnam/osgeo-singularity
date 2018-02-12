@@ -1,6 +1,6 @@
 ##!/usr/bin/make
 
-TARGET := /opt/eemt
+TARGET := /opt/osgeo
 
 SHELL := /bin/bash
 
