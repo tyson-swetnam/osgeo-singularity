@@ -1,5 +1,5 @@
 BootStrap: debootstrap
-OSVersion: xenial
+OSVersion: zesty
 MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 %setup
@@ -14,7 +14,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     export GISBASE GRASS_PROJSHARE LD_LIBRARY_PATH PATH PYTHONPATH
 
 %post
-    echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >/etc/apt/sources.list
+    echo "deb http://us.archive.ubuntu.com/ubuntu/ zesty main restricted universe multiverse" >/etc/apt/sources.list
 
     apt-get update && apt-get install -y --no-install-recommends \
         bison \
