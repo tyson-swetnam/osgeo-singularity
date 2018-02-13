@@ -116,10 +116,8 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     echo "/opt/osgeo/lib64" >> osgeo.conf
     echo "/opt/osgeo/grass-7.4.0/lib" >> grass.conf
     ldconfig
-
-# once everything is built, we can install GRASS extensions
-# Create a dummy mapset so we can install Addons
-# Run GRASS74 and Install Addons
+ 
+# once everything is built, we can install GRASS extensions 
     
     export LC_ALL=en_US.UTF-8 && \
         export LANG=en_US.UTF-8 && \
