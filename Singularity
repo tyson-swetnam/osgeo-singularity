@@ -95,6 +95,8 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     echo "LC_ALL=en_US.UTF-8" >> /etc/environment
     echo "LANG=en_US.UTF-8" >> /etc/environment
 
+# Build CCTools
+
     cd /tmp && \
        wget -nv http://ccl.cse.nd.edu/software/files/cctools-6.2.4-source.tar.gz && \
        tar xzf cctools-6.2.4-source.tar.gz && \
@@ -103,10 +105,11 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
        make && \
        make install
 
- cd /tmp && make -f gis_dependency.makefile
-
     rm -rf /tmp/build-dir /tmp/cctools*
 
+ # Build GDAL, GRASS, SAGA-GIS from source
+ cd /tmp && make -f gis_dependency.makefile
+ 
     echo "Updating library paths"
     cd /etc/ld.so.conf.d
     echo "/opt/osgeo/lib" >> osgeo.conf
