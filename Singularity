@@ -135,13 +135,13 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-get install -y postgresql postgresql-contrib
 
 # Add QGIS and GRASS to sources.list
-    add-apt-repository ppa:ubuntugis/ubuntugis-experimental
+    add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+    apt-get -y update
     
 # Add QGIS keys
     apt-key adv --keyserver keyserver.ubuntu.com --recv-key CAEB3DC3BDF7FB45
 
 # Install QGIS w/ Python
-    apt-get -y update
     apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass
 
 # build info
