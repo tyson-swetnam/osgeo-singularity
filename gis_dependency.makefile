@@ -32,7 +32,7 @@ $(TARGET)/lib/libgeos.so:
 	 && make \
 	 && make install)
 
-##gdal
+## GDAL
 $(TARGET)/bin/gdalinfo: $(TARGET)/lib/libgeos.so
 	(cd build-dir \
 	 && wget $(WGET_FLAGS) http://download.osgeo.org/gdal/2.2.3/gdal-2.2.3.tar.gz \
@@ -42,7 +42,7 @@ $(TARGET)/bin/gdalinfo: $(TARGET)/lib/libgeos.so
 	 && make \
 	 && make install)
 
-##GRASS
+## GRASS
 $(TARGET)/bin/grass74: $(TARGET)/bin/gdalinfo
 	(cd build-dir \
 	 && wget $(WGET_FLAGS) https://grass.osgeo.org/grass74/source/grass-7.4.0.tar.gz \
@@ -53,7 +53,7 @@ $(TARGET)/bin/grass74: $(TARGET)/bin/gdalinfo
 	 && (make || make || make) \
 	 && make install)
 
-##GDAL_GRASS
+## GDAL_GRASS
 $(TARGET)/lib/gdalplugins/gdal_GRASS.so: $(TARGET)/bin/grass74 $(TARGET)/bin/gdalinfo
 	(cd build-dir \
 	 && wget $(WGET_FLAGS) http://download.osgeo.org/gdal/2.2.3/gdal-grass-2.2.3.tar.gz \
@@ -64,7 +64,7 @@ $(TARGET)/lib/gdalplugins/gdal_GRASS.so: $(TARGET)/bin/grass74 $(TARGET)/bin/gda
 	 && make \
 	 && make install)
 
-##Saga
+## Saga-GIS
 $(TARGET)/bin/saga-gis: $(TARGET)/bin/grass74 $(TARGET)/lib/gdalplugins/gdal_GRASS.so
 	(cd build-dir \
 	 && wget $(WGET_FLAGS) 'http://downloads.sourceforge.net/project/saga-gis/SAGA%20-%203/SAGA%20-%203.0.0/saga_3.0.0.tar.gz' \
