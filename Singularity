@@ -148,5 +148,5 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     echo "Timestamp:" `date --utc` | tee /image-build-info.txt
 
 %labels
-Maintainer Tyson Lee Swetnam
+Maintainer Tyson L Swetnam
 Version v0.1
