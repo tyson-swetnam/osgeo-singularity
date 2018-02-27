@@ -66,6 +66,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         libxmu-dev \
         libzmq3-dev \
         netcdf-bin \
+        ocl-icd-opencl-dev \
         openjdk-8-jdk \
         pkg-config \
         proj-bin \
