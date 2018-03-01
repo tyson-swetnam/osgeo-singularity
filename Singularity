@@ -6,10 +6,10 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     cp gis_dependency.makefile $SINGULARITY_ROOTFS/tmp/
 
 %environment
-    GISBASE=/opt/osgeo/grass-7.3.0
+    GISBASE=/opt/osgeo/grass-7.2.2
     GRASS_PROJSHARE=/usr/share/proj
-    LD_LIBRARY_PATH=/opt/osgeo/lib:/opt/osgeo/grass-7.3.0/lib
-    PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.3.0/bin:$PATH
+    LD_LIBRARY_PATH=/opt/osgeo/lib:/opt/osgeo/grass-7.2.2/lib
+    PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.2.2/bin:$PATH
     PYTHONPATH=/opt/osgeo/lib/python2.7/site-packages
     export GISBASE GRASS_PROJSHARE LD_LIBRARY_PATH PATH PYTHONPATH
 
@@ -115,18 +115,18 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     cd /etc/ld.so.conf.d
     echo "/opt/osgeo/lib" >> osgeo.conf
     echo "/opt/osgeo/lib64" >> osgeo.conf
-    echo "/opt/osgeo/grass-7.3.0/lib" >> grass.conf
+    echo "/opt/osgeo/grass-7.2.2/lib" >> grass.conf
     ldconfig
  
 # once everything is built, we can install GRASS extensions 
     
     export LC_ALL=en_US.UTF-8 && \
         export LANG=en_US.UTF-8 && \
-        export PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.3.0/bin:/opt/osgeo/grass-7.3.0/scripts/:$PATH && \
-        export GISBASE=/opt/osgeo/grass-7.3.0 && \
+        export PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.2.2/bin:/opt/osgeo/grass-7.2.2/scripts/:$PATH && \
+        export GISBASE=/opt/osgeo/grass-7.2.2 && \
         rm -rf mytmp_wgs84 && \
-        grass73 -text -c epsg:3857 ${PWD}/mytmp_wgs84 -e && \
-        echo "g.extension -s extension=r.sun.mp ; g.extension -s extension=r.sun.hourly ; g.extension -s extension=r.sun.daily" | grass73 -text ${PWD}/mytmp_wgs84/PERMANENT
+        grass72 -text -c epsg:3857 ${PWD}/mytmp_wgs84 -e && \
+        echo "g.extension -s extension=r.sun.mp ; g.extension -s extension=r.sun.hourly ; g.extension -s extension=r.sun.daily" | grass72 -text ${PWD}/mytmp_wgs84/PERMANENT
 
 # Install non-gis specific tools
     apt-get install -y texlive-extra-utils 
