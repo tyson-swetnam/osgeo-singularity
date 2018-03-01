@@ -27,7 +27,7 @@ $(TARGET)/lib/libgeos.so:
 	(cd build-dir \
 	 && wget $(WGET_FLAGS) http://download.osgeo.org/geos/geos-3.6.2.tar.bz2 \
 	 && tar -xjf geos-3.6.2.tar.bz2 \
-	 && cd geos-3.6.2 \
+gre	 && cd geos-3.6.2 \
 	 && ./configure --prefix=$(TARGET) --enable-python \
 	 && make \
 	 && make install)
@@ -44,9 +44,9 @@ $(TARGET)/bin/gdalinfo: $(TARGET)/lib/libgeos.so
 	 && make install)
 
 ## GRASS
-$(TARGET)/bin/grass73: $(TARGET)/bin/gdalinfo
+$(TARGET)/bin/grass72: $(TARGET)/bin/gdalinfo
 	(cd build-dir \
-	 && wget $(WGET_FLAGS) https://grass.osgeo.org/grass73/source/grass-7.2.2.tar.gz \
+	 && wget $(WGET_FLAGS) https://grass.osgeo.org/grass72/source/grass-7.2.2.tar.gz \
 	 && tar xzf grass-7.2.2.tar.gz \
 	 && cd grass-7.2.2 \
 	 && export LDFLAGS="-Wl,-rpath,$(TARGET)/lib -lpthread" \
