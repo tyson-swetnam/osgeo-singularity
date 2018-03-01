@@ -130,7 +130,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 # Install non-gis specific tools
     apt-get install -y texlive-extra-utils 
-    apt-get install -y software-properties-common # to ease adding new ppas
+    apt-get install -y software-properties-common # to ease the adding of new ppas
     apt-get install -y libudunits2-dev # udunits2
 
 # Install Postgres (for PostGIS)
