@@ -72,9 +72,9 @@ $(TARGET)/lib/gdalplugins/gdal_GRASS.so: $(TARGET)/bin/grass74 $(TARGET)/bin/gda
 ## Saga-GIS
 $(TARGET)/bin/saga-gis: $(TARGET)/bin/grass74 $(TARGET)/lib/gdalplugins/gdal_GRASS.so
 	(cd build-dir \
-	 && wget $(WGET_FLAGS) 'https://sourceforge.net/projects/saga-gis/files/SAGA%20-%206/SAGA%20-%206.2.0/saga-6.2.0.tar.gz' \
-	 && tar xzf saga-6.2.0.tar.gz \
-	 && cd saga-6.2.0 \
+	 && wget $(WGET_FLAGS) 'https://downloads.sourceforge.net/project/saga-gis/SAGA%20-%206/SAGA%20-%206.3.0/saga-6.3.0.tar.gz' \
+	 && tar xzf saga-6.3.0.tar.gz \
+	 && cd saga-6.3.0 \
 	 && ./configure --prefix=$(TARGET) --disable-odbc \
 	 && make \
 	 && make install)
