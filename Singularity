@@ -137,7 +137,13 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-get install -y postgresql postgresql-contrib
 
 # Add QGIS and GRASS to sources.list
-    add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+    echo " " >> /etc/apt/sources.list
+    echo "## QGIS packages" >> /etc/apt/sources.list
+    echo "deb     https://qgis.org/ubuntugis xenial main" >> /etc/apt/sources.list
+    echo "deb-src https://qgis.org/ubuntugis xenial main" >> /etc/apt/sources.list
+
+# Add Ubuntugis ppa    
+    add-apt-repository ppa:ubuntugis/ppa
     apt-get -y update
     
 # Add QGIS keys
