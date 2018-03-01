@@ -55,7 +55,6 @@ $(TARGET)/bin/grass74: $(TARGET)/bin/gdalinfo
 		--without-fftw --without-python --with-geos=$(TARGET)/bin --with-libs=$(TARGET)/lib \
 		-with-opengl=no --with-netcdf --without-tcltk --with-sqlite=yes --with-freetype=yes \
 		--with-freetype-includes="/usr/include/freetype2/" --with-openmp \
-		--with-opencl --with-opencl-includes=/opt/cuda/include \
 	 && (make || make || make) \
 	 && make install)
 
