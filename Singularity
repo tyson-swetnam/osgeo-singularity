@@ -29,6 +29,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         gcc \
         gettext \
         ghostscript \
+        htop \
         libavcodec-dev \
         libavformat-dev \
         libav-tools \
