@@ -17,6 +17,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >/etc/apt/sources.list
 
     apt-get update && apt-get install -y --no-install-recommends \
+        apt-transport-https \
         bison \
         build-essential \
         ccache \
