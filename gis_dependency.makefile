@@ -27,7 +27,7 @@ $(TARGET)/lib/libgeos.so:
 	(cd build-dir \
 	 && wget $(WGET_FLAGS) http://download.osgeo.org/geos/geos-3.6.2.tar.bz2 \
 	 && tar -xjf geos-3.6.2.tar.bz2 \
-gre	 && cd geos-3.6.2 \
+	 && cd geos-3.6.2 \
 	 && ./configure --prefix=$(TARGET) --enable-python \
 	 && make \
 	 && make install)
