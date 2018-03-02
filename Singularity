@@ -10,7 +10,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     GRASS_PROJSHARE=/usr/share/proj
     LD_LIBRARY_PATH=/opt/osgeo/lib:/opt/osgeo/grass-7.4.0/lib
     PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.4.0/bin:$PATH
-    PYTHONPATH=/opt/osgeo/lib/python2.7/site-packages
+    PYTHONPATH=/opt/osgeo/lib/python3.5/site-packages
     export GISBASE GRASS_PROJSHARE LD_LIBRARY_PATH PATH PYTHONPATH
 
 %post
@@ -72,7 +72,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         pkg-config \
         proj-bin \
         proj-data \
-        python \
+        python3 \
         python-dateutil \
         python-dev \
         python-numpy \
