@@ -25,9 +25,9 @@ setup:
 ##geos
 $(TARGET)/lib/libgeos.so:
 	(cd build-dir \
-	 && wget $(WGET_FLAGS) http://download.osgeo.org/geos/geos-3.6.2.tar.bz2 \
-	 && tar -xjf geos-3.6.2.tar.bz2 \
-	 && cd geos-3.6.2 \
+	 && wget $(WGET_FLAGS) http://download.osgeo.org/geos/geos-3.5.1.tar.bz2 \
+	 && tar -xjf geos-3.5.1.tar.bz2 \
+	 && cd geos-3.5.1 \
 	 && ./configure --prefix=$(TARGET) --enable-python \
 	 && make \
 	 && make install)
@@ -35,9 +35,9 @@ $(TARGET)/lib/libgeos.so:
 ## GDAL
 $(TARGET)/bin/gdalinfo: $(TARGET)/lib/libgeos.so
 	(cd build-dir \
-	 && wget $(WGET_FLAGS) http://download.osgeo.org/gdal/2.2.3/gdal-2.2.3.tar.gz \
-	 && tar xzf gdal-2.2.3.tar.gz \
-	 && cd gdal-2.2.3 \
+	 && wget $(WGET_FLAGS) http://download.osgeo.org/gdal/2.2.2/gdal-2.2.2.tar.gz \
+	 && tar xzf gdal-2.2.2.tar.gz \
+	 && cd gdal-2.2.2 \
 	 && ./configure --prefix=$(TARGET) --without-grass --with-netcdf --with-python \
 	 	--with-hdf5 --with-geos=$(TARGET)/bin/geos-config \
 	 && make \
