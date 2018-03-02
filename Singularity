@@ -6,10 +6,10 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     cp gis_dependency.makefile $SINGULARITY_ROOTFS/tmp/
 
 %environment
-    GISBASE=/opt/osgeo/grass-7.2.2
+    GISBASE=/opt/osgeo/grass-7.4.0
     GRASS_PROJSHARE=/usr/share/proj
-    LD_LIBRARY_PATH=/opt/osgeo/lib:/opt/osgeo/grass-7.2.2/lib
-    PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.2.2/bin:$PATH
+    LD_LIBRARY_PATH=/opt/osgeo/lib:/opt/osgeo/grass-7.4.0/lib
+    PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.4.0/bin:$PATH
     PYTHONPATH=/opt/osgeo/lib/python2.7/site-packages
     export GISBASE GRASS_PROJSHARE LD_LIBRARY_PATH PATH PYTHONPATH
 
@@ -116,18 +116,18 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     cd /etc/ld.so.conf.d
     echo "/opt/osgeo/lib" >> osgeo.conf
     echo "/opt/osgeo/lib64" >> osgeo.conf
-    echo "/opt/osgeo/grass-7.2.2/lib" >> grass.conf
+    echo "/opt/osgeo/grass-7.4.0/lib" >> grass.conf
     ldconfig
  
 # once everything is built, we can install the GRASS extensions 
     
     export LC_ALL=en_US.UTF-8 && \
         export LANG=en_US.UTF-8 && \
-        export PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.2.2/bin:/opt/osgeo/grass-7.2.2/scripts/:$PATH && \
-        export GISBASE=/opt/osgeo/grass-7.2.2 && \
+        export PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.4.0/bin:/opt/osgeo/grass-7.4.0/scripts/:$PATH && \
+        export GISBASE=/opt/osgeo/grass-7.4.0 && \
         rm -rf mytmp_wgs84 && \
-        grass72 -text -c epsg:3857 ${PWD}/mytmp_wgs84 -e && \
-        echo "g.extension -s extension=r.sun.mp ; g.extension -s extension=r.sun.hourly ; g.extension -s extension=r.sun.daily" | grass72 -text ${PWD}/mytmp_wgs84/PERMANENT
+        grass74 -text -c epsg:3857 ${PWD}/mytmp_wgs84 -e && \
+        echo "g.extension -s extension=r.sun.mp ; g.extension -s extension=r.sun.hourly ; g.extension -s extension=r.sun.daily" | grass74 -text ${PWD}/mytmp_wgs84/PERMANENT
 
 # Install non-gis specific tools
     apt-get install -y texlive-extra-utils 
@@ -144,7 +144,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     echo "deb-src https://qgis.org/ubuntugis xenial main" >> /etc/apt/sources.list
 
 # Add Ubuntugis ppa    
-    add-apt-repository ppa:ubuntugis/ppa
+    add-apt-repository ppa:ubuntugis/ubuntugis-unstable
     apt-get -y update
     
 # Add QGIS keys
