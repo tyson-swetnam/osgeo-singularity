@@ -119,7 +119,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     echo "/opt/osgeo/grass-7.2.2/lib" >> grass.conf
     ldconfig
  
-# once everything is built, we can install GRASS extensions 
+# once everything is built, we can install the GRASS extensions 
     
     export LC_ALL=en_US.UTF-8 && \
         export LANG=en_US.UTF-8 && \
@@ -138,7 +138,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-get install -y postgresql postgresql-contrib
 
 # Add QGIS and GRASS to sources.list
-    echo " " >> /etc/apt/sources.list
+    echo "" >> /etc/apt/sources.list
     echo "## QGIS packages" >> /etc/apt/sources.list
     echo "deb     https://qgis.org/ubuntugis xenial main" >> /etc/apt/sources.list
     echo "deb-src https://qgis.org/ubuntugis xenial main" >> /etc/apt/sources.list
