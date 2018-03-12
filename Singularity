@@ -98,7 +98,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     echo "LANG=en_US.UTF-8" >> /etc/environment
 
 # Build GDAL, GRASS, SAGA-GIS from source
-# cd /tmp && make -f gis_dependency.makefile
+    cd /tmp && make -f gis_dependency.makefile
  
     echo "Updating library paths"
     cd /etc/ld.so.conf.d
