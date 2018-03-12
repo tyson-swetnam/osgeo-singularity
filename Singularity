@@ -97,20 +97,8 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     echo "LC_ALL=en_US.UTF-8" >> /etc/environment
     echo "LANG=en_US.UTF-8" >> /etc/environment
 
-# Build CCTools
-
-    cd /tmp && \
-       wget -nv http://ccl.cse.nd.edu/software/files/cctools-6.2.4-source.tar.gz && \
-       tar xzf cctools-6.2.4-source.tar.gz && \
-       cd cctools-6.2.4-source && \
-       ./configure --prefix=/opt/osgeo && \
-       make && \
-       make install
-
-    rm -rf /tmp/build-dir /tmp/cctools*
-
- # Build GDAL, GRASS, SAGA-GIS from source
- cd /tmp && make -f gis_dependency.makefile
+# Build GDAL, GRASS, SAGA-GIS from source
+# cd /tmp && make -f gis_dependency.makefile
  
     echo "Updating library paths"
     cd /etc/ld.so.conf.d
@@ -150,11 +138,31 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 # Add QGIS keys
     apt-key adv --keyserver keyserver.ubuntu.com --recv-key CAEB3DC3BDF7FB45
 
-# Install QGIS w/ Python
+# Install GRASS, then QGIS w/ Python
+    apt-get update
+    apt-get install -y grass
     apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass
+
+# Install SAGA-GIS
+    apt-add-repository ppa:johanvdw/saga-gis
+    apt-get update
+    apt-get install saga
+
+# Build CCTools
+
+    cd /tmp && \
+       wget -nv http://ccl.cse.nd.edu/software/files/cctools-6.2.4-source.tar.gz && \
+       tar xzf cctools-6.2.4-source.tar.gz && \
+       cd cctools-6.2.4-source && \
+       ./configure --prefix=/opt/osgeo && \
+       make && \
+       make install
+
+    rm -rf /tmp/build-dir /tmp/cctools*
 
 # build info
     echo "Timestamp:" `date --utc` | tee /image-build-info.txt
+
 
 %labels
 Maintainer Tyson L Swetnam
