@@ -15,7 +15,6 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 %post
     echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >/etc/apt/sources.list
-
     apt-get update && apt-get install -y --no-install-recommends \
         apt-transport-https \
         bison \
@@ -108,7 +107,6 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     ldconfig
  
 # once everything is built, we can install the GRASS extensions 
-    
     export LC_ALL=en_US.UTF-8 && \
         export LANG=en_US.UTF-8 && \
         export PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.4.0/bin:/opt/osgeo/grass-7.4.0/scripts/:$PATH && \
@@ -149,7 +147,6 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-get install saga
 
 # Build CCTools
-
     cd /tmp && \
        wget -nv http://ccl.cse.nd.edu/software/files/cctools-6.2.4-source.tar.gz && \
        tar xzf cctools-6.2.4-source.tar.gz && \
@@ -157,13 +154,11 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
        ./configure --prefix=/opt/osgeo && \
        make && \
        make install
-
     rm -rf /tmp/build-dir /tmp/cctools*
 
 # build info
     echo "Timestamp:" `date --utc` | tee /image-build-info.txt
 
-
 %labels
 Maintainer Tyson L Swetnam
-Version v0.1
+Version v0.2
