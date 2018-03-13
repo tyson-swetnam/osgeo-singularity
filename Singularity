@@ -92,6 +92,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         subversion \
         swig \
         unzip \
+        vim \
         wget \
         wx3.0-headers \
         wx-common \
