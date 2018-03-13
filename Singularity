@@ -2,6 +2,9 @@ BootStrap: debootstrap
 OSVersion: xenial
 MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
+%setup
+    cp gis_dependency.makefile $SINGULARITY_ROOTFS/tmp/
+
 %environment
     GISBASE=/opt/osgeo/grass-7.4.0
     GRASS_PROJSHARE=/usr/share/proj
@@ -11,9 +14,15 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     export GISBASE GRASS_PROJSHARE LD_LIBRARY_PATH PATH PYTHONPATH
 
 %post
-    echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >/etc/apt/sources.list
+    echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >> /etc/apt/sources.list
 
-# install Ubuntu dependencies
+    # be sure to have an updated system
+    apt-get update && apt-get upgrade -y
+
+    # install PROJ
+    apt-get install libproj-dev proj-data proj-bin -y
+
+    # install Ubuntu dependencies
     apt-get update && apt-get install -y --no-install-recommends \
         apt-transport-https \
         bison \
@@ -83,11 +92,10 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         subversion \
         swig \
         unzip \
-        vim \
         wget \
         wx3.0-headers \
         wx-common \
-        zlib1g-dev \
+        zlib1g-dev 
 
 # set locale (this fixes an error we had in GRASS environment on startup)
       locale-gen en_US en_US.UTF-8
@@ -95,18 +103,15 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
       echo "LC_ALL=en_US.UTF-8" >> /etc/environment
       echo "LANG=en_US.UTF-8" >> /etc/environment
 
-# install PROJ
-    apt-get install -y libproj-dev proj-data proj-bin 
-    
 # Makefile for GEOS, GDAL, GRASS, SAGA-GIS
-
+    mkdir /opt/osgeo
     cd /tmp && make -f gis_dependency.makefile
 
     echo "Updating library paths"
     cd /etc/ld.so.conf.d
-    echo "/opt/osgeo/lib" >>osgeo.conf
-    echo "/opt/osgeo/lib64" >>osgeo.conf
-    echo "/opt/osgeo/grass-7.4.0/lib" >>grass.conf
+    echo "/opt/osgeo/lib" >> osgeo.conf
+    echo "/opt/osgeo/lib64" >> osgeo.conf
+    echo "/opt/osgeo/grass-7.4.0/lib" >> grass.conf
     ldconfig
 
 # once everything is built, we can install the GRASS extensions 
@@ -141,8 +146,6 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-key adv --keyserver keyserver.ubuntu.com --recv-key CAEB3DC3BDF7FB45
 
 # Install GRASS, then QGIS w/ Python
-    apt-get update
-    apt-get install -y grass
     apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass
 
 # Build CCTools
