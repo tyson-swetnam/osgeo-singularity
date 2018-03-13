@@ -42,7 +42,6 @@ $(TARGET)/bin/gdalinfo: $(TARGET)/lib/libgeos.so
 	 && make \
 	 && make install)
 
-
 ##GRASS
 $(TARGET)/bin/grass74: $(TARGET)/bin/gdalinfo
 	(cd build-dir \
@@ -53,7 +52,6 @@ $(TARGET)/bin/grass74: $(TARGET)/bin/gdalinfo
 	 && ./configure --enable-64bit --prefix=$(TARGET) --with-libs=$(TARGET)/lib --with-proj-share=/usr/share/proj --with-gdal=$(TARGET)  --with-cxx --without-fftw --without-python --with-geos=$(TARGET)/bin --with-libs=$(TARGET)/lib -with-opengl=no --with-netcdf --without-tcltk --with-sqlite=yes --with-freetype=yes --with-freetype-includes="/usr/include/freetype2/" --with-openmp \
 	 && (make || make || make) \
 	 && make install)
-
 
 ##GDAL_GRASS
 $(TARGET)/lib/gdalplugins/gdal_GRASS.so: $(TARGET)/bin/grass74 $(TARGET)/bin/gdalinfo
@@ -66,7 +64,6 @@ $(TARGET)/lib/gdalplugins/gdal_GRASS.so: $(TARGET)/bin/grass74 $(TARGET)/bin/gda
 	 && make \
 	 && make install)
 
-
 ##Saga
 $(TARGET)/bin/saga-gis: $(TARGET)/bin/grass74 $(TARGET)/lib/gdalplugins/gdal_GRASS.so
 	(cd build-dir \
@@ -76,4 +73,3 @@ $(TARGET)/bin/saga-gis: $(TARGET)/bin/grass74 $(TARGET)/lib/gdalplugins/gdal_GRA
 	 && ./configure --prefix=$(TARGET) --disable-odbc \
 	 && make \
 	 && make install)
-
