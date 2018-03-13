@@ -13,13 +13,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 %post
     echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >/etc/apt/sources.list
 
-    # be sure to have an updated system
-    apt-get update && apt-get upgrade -y
-
-    # install PROJ
-    apt-get install libproj-dev proj-data proj-bin -y
-
-    # install Ubuntu dependencies
+# install Ubuntu dependencies
     apt-get update && apt-get install -y --no-install-recommends \
         apt-transport-https \
         bison \
@@ -101,15 +95,18 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
       echo "LC_ALL=en_US.UTF-8" >> /etc/environment
       echo "LANG=en_US.UTF-8" >> /etc/environment
 
+# install PROJ
+    apt-get install -y libproj-dev proj-data proj-bin 
+    
 # Makefile for GEOS, GDAL, GRASS, SAGA-GIS
 
     cd /tmp && make -f gis_dependency.makefile
 
     echo "Updating library paths"
     cd /etc/ld.so.conf.d
-    echo "/opt/osgeo/lib" >> osgeo.conf
-    echo "/opt/osgeo/lib64" >> osgeo.conf
-    echo "/opt/osgeo/grass-7.4.0/lib" >> grass.conf
+    echo "/opt/osgeo/lib" >>osgeo.conf
+    echo "/opt/osgeo/lib64" >>osgeo.conf
+    echo "/opt/osgeo/grass-7.4.0/lib" >>grass.conf
     ldconfig
 
 # once everything is built, we can install the GRASS extensions 
