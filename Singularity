@@ -147,7 +147,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-key adv --keyserver keyserver.ubuntu.com --recv-key CAEB3DC3BDF7FB45
 
 # Install GRASS, then QGIS w/ Python
-    apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass
+    apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass saga
 
 # Build CCTools
 
