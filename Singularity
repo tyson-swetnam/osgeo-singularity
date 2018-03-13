@@ -3,11 +3,11 @@ OSVersion: xenial
 MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 %environment
-    GISBASE=/usr/local/grass-7.4.0
+    GISBASE=/opt/osgeo/grass-7.4.0
     GRASS_PROJSHARE=/usr/share/proj
-    LD_LIBRARY_PATH=/usr/local/lib:/usr/local/grass-7.4.0/lib
-    PATH=/usr/local/bin:/usr/local/grass-7.4.0/bin:$PATH
-    PYTHONPATH=/usr/local/lib/python3.6/site-packages
+    LD_LIBRARY_PATH=/opt/osgeo/lib:/opt/osgeo/grass-7.4.0/lib
+    PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.4.0/bin:$PATH
+    PYTHONPATH=/opt/osgeo/lib/python3.6/site-packages
     export GISBASE GRASS_PROJSHARE LD_LIBRARY_PATH PATH PYTHONPATH
 
 %post
@@ -18,12 +18,6 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
     # install PROJ
     apt-get install libproj-dev proj-data proj-bin -y
-
-    # install GEOS
-    apt-get install libgeos-dev -y
-
-    # install GDAL
-    apt-get install libgdal-dev python-gdal gdal-bin -y
 
     # install Ubuntu dependencies
     apt-get update && apt-get install -y --no-install-recommends \
@@ -101,18 +95,29 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         wx-common \
         zlib1g-dev \
 
-    # set locale (this fixes an error we had in GRASS environment on startup)
+# set locale (this fixes an error we had in GRASS environment on startup)
       locale-gen en_US en_US.UTF-8
       dpkg-reconfigure locales 
       echo "LC_ALL=en_US.UTF-8" >> /etc/environment
       echo "LANG=en_US.UTF-8" >> /etc/environment
- 
+
+# Makefile for GEOS, GDAL, GRASS, SAGA-GIS
+
+    cd /tmp && make -f gis_dependency.makefile
+
+    echo "Updating library paths"
+    cd /etc/ld.so.conf.d
+    echo "/opt/osgeo/lib" >> osgeo.conf
+    echo "/opt/osgeo/lib64" >> osgeo.conf
+    echo "/opt/osgeo/grass-7.4.0/lib" >> grass.conf
+    ldconfig
+
 # once everything is built, we can install the GRASS extensions 
     
     export LC_ALL=en_US.UTF-8 && \
     export LANG=en_US.UTF-8 && \
-    export PATH=/usr/local/bin:/usr/local/grass-7.4.0/bin:/usr/local/grass-7.4.0/scripts/:$PATH && \
-    export GISBASE=/usr/local/grass-7.4.0 && \
+    export PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.4.0/bin:/opt/osgeo/grass-7.4.0/scripts/:$PATH && \
+    export GISBASE=/opt/osgeo/grass-7.4.0 && \
     rm -rf mytmp_wgs84 && \
     grass74 -text -c epsg:3857 ${PWD}/mytmp_wgs84 -e && \
     echo "g.extension -s extension=r.sun.mp ; g.extension -s extension=r.sun.hourly ; g.extension -s extension=r.sun.daily" | grass74 -text ${PWD}/mytmp_wgs84/PERMANENT
@@ -143,18 +148,13 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-get install -y grass
     apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass
 
-# Install SAGA-GIS
-    apt-add-repository ppa:johanvdw/saga-gis
-    apt-get update
-    apt-get install -y saga
-
 # Build CCTools
 
     cd /tmp && \
        wget -nv http://ccl.cse.nd.edu/software/files/cctools-6.2.4-source.tar.gz && \
        tar xzf cctools-6.2.4-source.tar.gz && \
        cd cctools-6.2.4-source && \
-       ./configure --prefix=/opt && \
+       ./configure --prefix=/opt/cctools && \
        make && \
        make install
 
