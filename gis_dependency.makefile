@@ -1,6 +1,5 @@
 ##!/usr/bin/make
 
-
 TARGET := /opt/osgeo
 
 SHELL := /bin/bash
@@ -16,10 +15,8 @@ WGET_FLAGS := -nv --no-check-certificate
 
 .PHONY: all setup
 
-
 # list base packages as well as top level goals
 all: setup $(TARGET)/lib/gdalplugins/gdal_GRASS.so $(TARGET)/bin/saga-gis
-
 
 setup:
 	@rm -rf build-dir
@@ -70,12 +67,13 @@ $(TARGET)/lib/gdalplugins/gdal_GRASS.so: $(TARGET)/bin/grass74 $(TARGET)/bin/gda
 	 && make install)
 
 
-## Saga-GIS
- $(TARGET)/bin/saga-gis: $(TARGET)/bin/grass74 $(TARGET)/lib/gdalplugins/gdal_GRASS.so
- 	(cd build-dir \
- 	 && wget $(WGET_FLAGS) 'https://sourceforge.net/projects/saga-gis/files/SAGA%20-%206/SAGA%20-%206.2.0/saga-6.2.0.tar.gz' \
- 	 && tar xzf saga-6.2.0.tar.gz \
- 	 && cd saga-6.2.0 \
- 	 && ./configure --prefix=$(TARGET) --disable-odbc \
- 	 && make \
- 	 && make install)
+##Saga
+$(TARGET)/bin/saga-gis: $(TARGET)/bin/grass74 $(TARGET)/lib/gdalplugins/gdal_GRASS.so
+	(cd build-dir \
+	 && wget $(WGET_FLAGS) 'http://downloads.sourceforge.net/project/saga-gis/SAGA%20-%203/SAGA%20-%203.0.0/saga_3.0.0.tar.gz' \
+	 && tar xzf saga_3.0.0.tar.gz \
+	 && cd saga-3.0.0 \
+	 && ./configure --prefix=$(TARGET) --disable-odbc \
+	 && make \
+	 && make install)
+
