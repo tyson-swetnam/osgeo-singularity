@@ -5,7 +5,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 %environment
     GISBASE=/usr/local/grass-7.4.0
     GRASS_PROJSHARE=/usr/share/proj
-    LD_LIBRARY_PATH=/usr/local/lib:/opt/osgeo/grass-7.4.0/lib
+    LD_LIBRARY_PATH=/usr/local/lib:/usr/local/grass-7.4.0/lib
     PATH=/usr/local/bin:/usr/local/grass-7.4.0/bin:$PATH
     PYTHONPATH=/usr/local/lib/python3.6/site-packages
     export GISBASE GRASS_PROJSHARE LD_LIBRARY_PATH PATH PYTHONPATH
@@ -154,7 +154,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
        wget -nv http://ccl.cse.nd.edu/software/files/cctools-6.2.4-source.tar.gz && \
        tar xzf cctools-6.2.4-source.tar.gz && \
        cd cctools-6.2.4-source && \
-       ./configure --prefix=/opt/osgeo && \
+       ./configure --prefix=/opt && \
        make && \
        make install
 
@@ -163,3 +163,4 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 %labels
 Maintainer Tyson Lee Swetnam
 Version v0.2
+Date 2018-03-13
