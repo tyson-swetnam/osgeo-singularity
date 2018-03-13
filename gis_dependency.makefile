@@ -13,10 +13,10 @@ export LD_LIBRARY_PATH := $(TARGET)/lib:$(TARGET)/grass-7.4.0/lib
 
 WGET_FLAGS := -nv --no-check-certificate
 
-.PHONY: all setup
+.PHONY: setup
 
 # list base packages as well as top level goals
-all: setup $(TARGET)/lib/gdalplugins/gdal_GRASS.so $(TARGET)/bin/saga-gis
+# all: setup $(TARGET)/lib/gdalplugins/gdal_GRASS.so $(TARGET)/bin/saga-gis
 
 setup:
 	@rm -rf build-dir
