@@ -98,6 +98,18 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         wx-common \
         zlib1g-dev 
 
+# Build CCTools
+
+    cd /tmp && \
+       wget -nv http://ccl.cse.nd.edu/software/files/cctools-6.2.4-source.tar.gz && \
+       tar xzf cctools-6.2.4-source.tar.gz && \
+       cd cctools-6.2.4-source && \
+       ./configure --prefix=/opt/osgeo && \
+       make && \
+       make install
+
+    rm -rf /tmp/build-dir /tmp/cctools*
+    
 # set locale (this fixes an error we had in GRASS environment on startup)
       locale-gen en_US en_US.UTF-8
       dpkg-reconfigure locales 
@@ -147,19 +159,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-key adv --keyserver keyserver.ubuntu.com --recv-key CAEB3DC3BDF7FB45
 
 # Install GRASS, then QGIS w/ Python
-    apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass saga
-
-# Build CCTools
-
-    cd /tmp && \
-       wget -nv http://ccl.cse.nd.edu/software/files/cctools-6.2.4-source.tar.gz && \
-       tar xzf cctools-6.2.4-source.tar.gz && \
-       cd cctools-6.2.4-source && \
-       ./configure --prefix=/opt/cctools && \
-       make && \
-       make install
-
-    rm -rf /tmp/build-dir /tmp/cctools*
+    apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass
 
 %labels
 Maintainer Tyson Lee Swetnam
