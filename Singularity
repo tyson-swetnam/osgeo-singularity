@@ -109,15 +109,14 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
        make install
 
     rm -rf /tmp/build-dir /tmp/cctools*
-    
+
 # set locale (this fixes an error we had in GRASS environment on startup)
-      locale-gen en_US en_US.UTF-8
+      locale-gen en_GB en_GB.UTF-8
       dpkg-reconfigure locales 
-      echo "LC_ALL=en_US.UTF-8" >> /etc/environment
-      echo "LANG=en_US.UTF-8" >> /etc/environment
+      echo "LC_ALL=en_GB.UTF-8" >> /etc/environment
+      echo "LANG=en_GB.UTF-8" >> /etc/environment
 
 # Makefile for GEOS, GDAL, GRASS, SAGA-GIS
-    mkdir /opt/osgeo
     cd /tmp && make -f gis_dependency.makefile
 
     echo "Updating library paths"
@@ -158,10 +157,11 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 # Add QGIS keys
     apt-key adv --keyserver keyserver.ubuntu.com --recv-key CAEB3DC3BDF7FB45
 
-# Install GRASS, then QGIS w/ Python
-    apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass
+# Install GRASS, then QGIS w/ Python, and latest SAGA-GIS for QGIS
+    apt-get install -y saga=2.2.3+dfsg-1build1 libsaga=2.2.3+dfsg-1build1
+    apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass 
 
 %labels
 Maintainer Tyson Lee Swetnam
 Version v0.2
-Date 2018-03-13
+Date 2018-03-19
