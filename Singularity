@@ -163,14 +163,12 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-get install -y saga=2.2.3+dfsg-1build1 libsaga=2.2.3+dfsg-1build1
     apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass 
 
-# Install NVIDIA drivers
-    wget http://us.download.nvidia.com/XFree86/Linux-x86_64/390.48/NVIDIA-Linux-x86_64-390.48.run -O /tmp/NVIDIA-DRIVER.run
-    sh /tmp/NVIDIA-DRIVER.run -a -N --ui=none --no-kernel-module
-    rm /tmp/NVIDIA-DRIVER.run
+# Install latest NVIDIA drivers
+    add-apt-repository ppa:graphics-drivers/ppa
+    apt-get update -y
+    apt-get install -y nvidia-390 nvidia-smi
 
-    apt-get -y install nvidia-driver nvidia-smi
-
-# Install Virtual GL
+# Install VirtualGL
     wget https://sourceforge.net/projects/virtualgl/files/2.5.2/virtualgl_2.5.2_amd64.deb/download -O /tmp/virtualgl_2.5.2_amd64.deb
     apt-get -y install mesa-utils mesa-utils-extra x11-apps
     dpkg -i /tmp/virtualgl_2.5.2_amd64.deb
