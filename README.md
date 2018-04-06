@@ -5,9 +5,16 @@ Singularity Container for running OSGEO (GRASS, GDAL, QGIS, SAGA-GIS) on a virtu
 
 ## Installing the container
 
-First, [install Singularity]() on your localhost or remote system. 
+First, [install Singularity](https://singularity.lbl.gov/install-linux) on your localhost or remote system. 
 
+As of April 2018, Singularity is at version `2.4.5`
 
 ```
-
+VERSION=2.4.5
+wget https://github.com/singularityware/singularity/releases/download/$VERSION/singularity-$VERSION.tar.gz
+tar xvf singularity-$VERSION.tar.gz
+cd singularity-$VERSION
+./configure --prefix=/usr/local
+make
+sudo make install
 ```
