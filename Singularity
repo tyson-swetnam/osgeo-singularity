@@ -46,6 +46,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         libboost-thread-dev \
         libcairo2 \
         libcairo2-dev \
+        libcanberra-gtk3-module \
         libffmpegthumbnailer-dev \
         libfftw3-3 \
         libfftw3-dev \
