@@ -29,10 +29,11 @@ To build locally, pull this repository:
 
 ```
 git clone https://github.com/tyson-swetnam/osgeo-singularity
+cd osgeo-singularity
 ```
 
-Build a container locally:
+Build the container locally:
 
 ```
-sudo singularity build osgeo.simg osgeo-singularity/Singularity
+sudo singularity build osgeo.simg Singularity
 ```
