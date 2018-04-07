@@ -19,7 +19,7 @@ make
 sudo make install
 ```
 
-# Local Build
+## Local Build
 
 The Singularity file has some options in the `%post` section for installing NVIDIA drivers and OpenGL - these are currently commented out in the Singularity-Hub build.
 
