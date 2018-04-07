@@ -164,9 +164,9 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass 
 
 # Install latest NVIDIA drivers
-    add-apt-repository ppa:graphics-drivers/ppa
-    apt-get update -y
-    apt-get install -y nvidia-390
+#   add-apt-repository ppa:graphics-drivers/ppa
+#   apt-get update -y
+#   apt-get install -y nvidia-390
 
 # Install VirtualGL
     wget https://sourceforge.net/projects/virtualgl/files/2.5.2/virtualgl_2.5.2_amd64.deb/download -O /tmp/virtualgl_2.5.2_amd64.deb
@@ -176,4 +176,4 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 %labels
 Maintainer Tyson Lee Swetnam
 Version v0.2
-Date 2018-03-19
+Date 2018-04-07
