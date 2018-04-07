@@ -17,6 +17,8 @@ cd singularity-$VERSION
 ./configure --prefix=/usr/local
 make
 sudo make install
+cd ..
+sudo rm -rf singularity-$VERSION.tar.gz
 ```
 
 ## Local Build
@@ -32,5 +34,5 @@ git clone https://github.com/tyson-swetnam/osgeo-singularity
 Build a container locally:
 
 ```
-singularity build --name osgeo.simg /osgeo-singularity/Singularity
+sudo singularity build osgeo.simg osgeo-singularity/Singularity
 ```
