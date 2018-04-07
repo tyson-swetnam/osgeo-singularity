@@ -18,3 +18,16 @@ cd singularity-$VERSION
 make
 sudo make install
 ```
+The Singularity file has some options in the `%post` section for installing NVIDIA drivers and OpenGL - these are currently commented out in the Singularity-Hub build.
+
+To build locally, pull this repository:
+
+```
+git clone https://github.com/tyson-swetnam/osgeo-singularity
+```
+
+Build a container locally:
+
+```
+singularity build --name osgeo.simg /osgeo-singularity/Singularity
+```
