@@ -37,3 +37,29 @@ Build the container locally:
 ```
 sudo singularity build osgeo.simg Singularity
 ```
+
+## Run the Container
+
+To run the container as a shell:
+
+```
+singularity shell osgeo.simg
+```
+
+To run the container with a GUI interface for GRASS:
+
+```
+singularity exec osgeo.simg grass74
+```
+
+```
+singularity exec osgeo.simg qgis
+```
+
+```
+singularity exec osgeo.simg saga_gui
+```
+
+<aside class="notice">
+If you are accessing the container remotely, make sure to use the `ssh -X` flag
+</aside>
