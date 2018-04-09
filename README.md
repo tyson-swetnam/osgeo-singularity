@@ -52,9 +52,13 @@ To run the container with a GUI interface for GRASS:
 singularity exec osgeo.simg grass74
 ```
 
+For QGIS:
+
 ```
 singularity exec osgeo.simg qgis
 ```
+
+For Saga-GIS:
 
 ```
 singularity exec osgeo.simg saga_gui
