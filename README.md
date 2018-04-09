@@ -61,5 +61,7 @@ singularity exec osgeo.simg saga_gui
 ```
 
 <aside class="notice">
+  
 If you are accessing the container remotely, make sure to use the `ssh -X` flag
+
 </aside>
