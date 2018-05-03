@@ -175,5 +175,5 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 %labels
 Maintainer Tyson Lee Swetnam
-Version v0.3
-Date 2018-04-07
+Version v0.4
+Date 2018-05-03
