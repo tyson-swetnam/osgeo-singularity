@@ -4,6 +4,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 %setup
     cp gis_dependency.makefile $SINGULARITY_ROOTFS/tmp/
+    apt-get install debootstrap
 
 %environment
     GISBASE=/opt/osgeo/grass-7.4.0
