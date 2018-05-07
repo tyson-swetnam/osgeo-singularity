@@ -170,9 +170,9 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 #   apt-get install -y nvidia-390
 
 # Install VirtualGL
-    wget https://sourceforge.net/projects/virtualgl/files/2.5.2/virtualgl_2.5.2_amd64.deb/download -O /tmp/virtualgl_2.5.2_amd64.deb
-    apt-get -y install mesa-utils mesa-utils-extra x11-apps
-    dpkg -i /tmp/virtualgl_2.5.2_amd64.deb
+#    wget https://sourceforge.net/projects/virtualgl/files/2.5.2/virtualgl_2.5.2_amd64.deb/download -O /tmp/virtualgl_2.5.2_amd64.deb
+#    apt-get -y install mesa-utils mesa-utils-extra x11-apps
+#    dpkg -i /tmp/virtualgl_2.5.2_amd64.deb
 
 %labels
 Maintainer Tyson Lee Swetnam
