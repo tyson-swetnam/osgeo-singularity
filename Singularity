@@ -4,7 +4,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 %setup
     cp gis_dependency.makefile $SINGULARITY_ROOTFS/tmp/
-    apt-get install debootstrap
+    # apt-get install debootstrap
 
 %environment
     GISBASE=/opt/osgeo/grass-7.4.0
@@ -19,10 +19,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
     # be sure to have an updated system
     apt-get update && apt-get upgrade -y
-
-    # install PROJ
-    apt-get install libproj-dev proj-data proj-bin -y
-
+    
     # install Ubuntu dependencies
     apt-get update && apt-get install -y --no-install-recommends \
         apt-transport-https \
@@ -164,17 +161,17 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-get install -y saga=2.2.3+dfsg-1build1 libsaga=2.2.3+dfsg-1build1
     apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass 
 
-# Install latest NVIDIA drivers
+# Install latest NVIDIA drivers - experimental for VMs with GPU
 #   add-apt-repository ppa:graphics-drivers/ppa
 #   apt-get update -y
 #   apt-get install -y nvidia-390
 
-# Install VirtualGL
+# Install VirtualGL - experimental test for OpenGL VM
 #    wget https://sourceforge.net/projects/virtualgl/files/2.5.2/virtualgl_2.5.2_amd64.deb/download -O /tmp/virtualgl_2.5.2_amd64.deb
 #    apt-get -y install mesa-utils mesa-utils-extra x11-apps
 #    dpkg -i /tmp/virtualgl_2.5.2_amd64.deb
 
 %labels
 Maintainer Tyson Lee Swetnam
-Version v0.4
-Date 2018-05-03
+Version v0.5
+Date 2018-05-07
