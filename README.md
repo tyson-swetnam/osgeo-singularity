@@ -21,9 +21,15 @@ cd ..
 sudo rm -rf singularity-$VERSION.tar.gz
 ```
 
-## Local Build
+## Pull the Container from Singularity Hub
 
-The Singularity file has some options in the `%post` section for installing NVIDIA drivers and OpenGL - these are currently commented out in the Singularity-Hub build.
+The `latest` image is hosted on [Singularity Hub](https://www.singularity-hub.org/collections/567).
+
+```
+singularity pull --name osgeo.simg shub://tyson-swetnam/osgeo-singularity
+```
+
+## Build locally
 
 To build locally, pull this repository:
 
@@ -38,7 +44,9 @@ Build the container locally:
 sudo singularity build osgeo.simg Singularity
 ```
 
-## Run the Container
+**NOTE: The Singularity file has some options in the `%post` section for installing NVIDIA drivers and OpenGL - these are currently commented out in the Singularity-Hub build.**
+
+## Starting the Container 
 
 To run the container as a shell:
 
@@ -52,13 +60,13 @@ To run the container with a GUI interface for GRASS:
 singularity exec osgeo.simg grass74
 ```
 
-For QGIS:
+For QGIS GUI:
 
 ```
 singularity exec osgeo.simg qgis
 ```
 
-For Saga-GIS:
+For Saga-GIS GUI:
 
 ```
 singularity exec osgeo.simg saga_gui
