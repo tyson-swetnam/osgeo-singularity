@@ -30,7 +30,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         cmake \
         curl \
         ffmpeg \
-        ffmpeg2theora \
+        #ffmpeg2theora \
         flex \
         g++ \
         gcc \
@@ -41,7 +41,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         libavformat-dev \
         #libav-tools \
         #libavutil-dev \
-        libboost-dev \
+        libboost-all-dev \
         #libboost-program-options-dev \
         #libboost-thread-dev \
         libcairo2 \
