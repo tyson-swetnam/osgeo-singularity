@@ -31,7 +31,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         curl \
         ffmpeg \
         #ffmpeg2theora \
-        flex \
+        #flex \
         g++ \
         gcc \
         gettext \
