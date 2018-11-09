@@ -38,7 +38,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         htop \
         libavcodec-dev \
         libavformat-dev \
-        libav-tools \
+        #libav-tools \
         libavutil-dev \
         libboost-program-options-dev \
         libboost-thread-dev \
@@ -55,16 +55,16 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         libgsl0-dev \
         libgtk2.0-dev \
         libgtkmm-3.0-dev \
-        libjasper-dev \
+        #libjasper-dev \
         liblas-c-dev \
         libncurses5-dev \
         libnetcdf-dev \
         libperl-dev \
-        libpng12-dev \
+        #libpng12-dev \
         libpnglite-dev \
         libpq-dev \
         libproj-dev \
-        libreadline6 \
+        #libreadline6 \
         libreadline6-dev \
         libsqlite3-dev \
         libswscale-dev \
