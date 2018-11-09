@@ -29,6 +29,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         checkinstall \
         cmake \
         curl \
+        ffmpeg \
         ffmpeg2theora \
         flex \
         g++ \
@@ -40,8 +41,9 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         libavformat-dev \
         #libav-tools \
         #libavutil-dev \
-        libboost-program-options-dev \
-        libboost-thread-dev \
+        libboost-dev \
+        #libboost-program-options-dev \
+        #libboost-thread-dev \
         libcairo2 \
         libcairo2-dev \
         libcanberra-gtk-module \
