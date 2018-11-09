@@ -39,7 +39,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         libavcodec-dev \
         libavformat-dev \
         #libav-tools \
-        libavutil-dev \
+        #libavutil-dev \
         libboost-program-options-dev \
         libboost-thread-dev \
         libcairo2 \
