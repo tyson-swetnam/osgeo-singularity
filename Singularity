@@ -30,8 +30,8 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         cmake \
         curl \
         ffmpeg \
-        #ffmpeg2theora \
-        #flex \
+        ffmpeg2theora \
+        flex \
         g++ \
         gcc \
         gettext \
