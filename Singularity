@@ -1,5 +1,5 @@
 BootStrap: debootstrap
-OSVersion: xenial
+OSVersion: bionic
 MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 %setup
@@ -7,15 +7,15 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     # apt-get install debootstrap
 
 %environment
-    GISBASE=/opt/osgeo/grass-7.4.0
+    GISBASE=/opt/osgeo/grass-7.4.2
     GRASS_PROJSHARE=/usr/share/proj
-    LD_LIBRARY_PATH=/opt/osgeo/lib:/opt/osgeo/grass-7.4.0/lib
-    PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.4.0/bin:$PATH
+    LD_LIBRARY_PATH=/opt/osgeo/lib:/opt/osgeo/grass-7.4.2/lib
+    PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.4.2/bin:$PATH
     PYTHONPATH=/opt/osgeo/lib/python3.6/site-packages
     export GISBASE GRASS_PROJSHARE LD_LIBRARY_PATH PATH PYTHONPATH
 
 %post
-    echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >> /etc/apt/sources.list
+    echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse" >> /etc/apt/sources.list
 
     # be sure to have an updated system
     apt-get update && apt-get upgrade -y
@@ -101,9 +101,9 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 # Build CCTools
 
     cd /tmp && \
-       wget -nv http://ccl.cse.nd.edu/software/files/cctools-6.2.4-source.tar.gz && \
-       tar xzf cctools-6.2.4-source.tar.gz && \
-       cd cctools-6.2.4-source && \
+       wget -nv http://ccl.cse.nd.edu/software/files/cctools-7.0.8-source.tar.gz && \
+       tar xzf cctools-7.0.8-source.tar.gz && \
+       cd cctools-7.0.8-source && \
        ./configure --prefix=/opt/osgeo && \
        make && \
        make install
@@ -123,15 +123,15 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     cd /etc/ld.so.conf.d
     echo "/opt/osgeo/lib" >> osgeo.conf
     echo "/opt/osgeo/lib64" >> osgeo.conf
-    echo "/opt/osgeo/grass-7.4.0/lib" >> grass.conf
+    echo "/opt/osgeo/grass-7.4.2/lib" >> grass.conf
     ldconfig
 
 # once everything is built, we can install the GRASS extensions 
     
     export LC_ALL=en_US.UTF-8 && \
     export LANG=en_US.UTF-8 && \
-    export PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.4.0/bin:/opt/osgeo/grass-7.4.0/scripts/:$PATH && \
-    export GISBASE=/opt/osgeo/grass-7.4.0 && \
+    export PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.4.2/bin:/opt/osgeo/grass-7.4.2/scripts/:$PATH && \
+    export GISBASE=/opt/osgeo/grass-7.4.2 && \
     rm -rf mytmp_wgs84 && \
     grass74 -text -c epsg:3857 ${PWD}/mytmp_wgs84 -e && \
     echo "g.extension -s extension=r.sun.mp ; g.extension -s extension=r.sun.hourly ; g.extension -s extension=r.sun.daily" | grass74 -text ${PWD}/mytmp_wgs84/PERMANENT
@@ -147,10 +147,10 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 # Add QGIS and GRASS to sources.list
     echo "" >> /etc/apt/sources.list
     echo "## QGIS packages" >> /etc/apt/sources.list
-    echo "deb     https://qgis.org/ubuntugis xenial main" >> /etc/apt/sources.list
-    echo "deb-src https://qgis.org/ubuntugis xenial main" >> /etc/apt/sources.list
+    echo "deb     https://qgis.org/ubuntugis bionic main" >> /etc/apt/sources.list
+    echo "deb-src https://qgis.org/ubuntugis bionic main" >> /etc/apt/sources.list
 
-# Add Ubuntugis ppa    
+# Add Ubuntugis ppa, should update to latest QGIS (3.4 Madeira)
     add-apt-repository ppa:ubuntugis/ubuntugis-unstable
     apt-get -y update
     
@@ -161,17 +161,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-get install -y saga=2.2.3+dfsg-1build1 libsaga=2.2.3+dfsg-1build1
     apt-get install -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass 
 
-# Install latest NVIDIA drivers - experimental for VMs with GPU
-#   add-apt-repository ppa:graphics-drivers/ppa
-#   apt-get update -y
-#   apt-get install -y nvidia-390
-
-# Install VirtualGL - experimental test for OpenGL VM
-#    wget https://sourceforge.net/projects/virtualgl/files/2.5.2/virtualgl_2.5.2_amd64.deb/download -O /tmp/virtualgl_2.5.2_amd64.deb
-#    apt-get -y install mesa-utils mesa-utils-extra x11-apps
-#    dpkg -i /tmp/virtualgl_2.5.2_amd64.deb
-
 %labels
 Maintainer Tyson Lee Swetnam
-Version v0.6
-Date 2018-06-29
+Version v0.7
+Date 2018-11-09
