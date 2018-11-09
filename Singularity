@@ -1,5 +1,5 @@
 BootStrap: debootstrap
-OSVersion: bionic
+OSVersion: xenial
 MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 %setup
@@ -15,7 +15,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     export GISBASE GRASS_PROJSHARE LD_LIBRARY_PATH PATH PYTHONPATH
 
 %post
-    echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse" >> /etc/apt/sources.list
+    echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >> /etc/apt/sources.list
 
     # be sure to have an updated system
     apt-get update && apt-get upgrade -y
@@ -39,11 +39,10 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         htop \
         libavcodec-dev \
         libavformat-dev \
-        #libav-tools \
-        #libavutil-dev \
-        libboost-all-dev \
-        #libboost-program-options-dev \
-        #libboost-thread-dev \
+        libav-tools \
+        libavutil-dev \
+        libboost-program-options-dev \
+        libboost-thread-dev \
         libcairo2 \
         libcairo2-dev \
         libcanberra-gtk-module \
@@ -57,16 +56,16 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         libgsl0-dev \
         libgtk2.0-dev \
         libgtkmm-3.0-dev \
-        #libjasper-dev \
+        libjasper-dev \
         liblas-c-dev \
         libncurses5-dev \
         libnetcdf-dev \
         libperl-dev \
-        #libpng12-dev \
+        libpng12-dev \
         libpnglite-dev \
         libpq-dev \
         libproj-dev \
-        #libreadline6 \
+        libreadline6 \
         libreadline6-dev \
         libsqlite3-dev \
         libswscale-dev \
@@ -149,8 +148,8 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 # Add QGIS and GRASS to sources.list
     echo "" >> /etc/apt/sources.list
     echo "## QGIS packages" >> /etc/apt/sources.list
-    echo "deb     https://qgis.org/ubuntugis bionic main" >> /etc/apt/sources.list
-    echo "deb-src https://qgis.org/ubuntugis bionic main" >> /etc/apt/sources.list
+    echo "deb     https://qgis.org/ubuntugis xenial main" >> /etc/apt/sources.list
+    echo "deb-src https://qgis.org/ubuntugis xenial main" >> /etc/apt/sources.list
 
 # Add Ubuntugis ppa, should update to latest QGIS (3.4 Madeira)
     add-apt-repository ppa:ubuntugis/ubuntugis-unstable
