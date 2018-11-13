@@ -21,6 +21,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-get update && apt-get upgrade -y
     
     # install Ubuntu dependencies
+    apt-get install -y software-properties-common
     add-apt-repository ppa:deadsnakes/ppa
     apt-get update && apt-get install -y --no-install-recommends \
         apt-transport-https \
