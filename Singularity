@@ -21,7 +21,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-get update && apt-get upgrade -y
     
     # install Ubuntu dependencies
-    sudo add-apt-repository ppa:deadsnakes/ppa
+    add-apt-repository ppa:deadsnakes/ppa
     apt-get update && apt-get install -y --no-install-recommends \
         apt-transport-https \
         bison \
