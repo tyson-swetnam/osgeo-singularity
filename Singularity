@@ -81,6 +81,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         proj-bin \
         proj-data \
         python3 \
+	python3.6 \
         python-dateutil \
         python-dev \
         python-numpy \
@@ -88,7 +89,9 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         python-wxgtk3.0 \
         python-wxtools \
         python-wxversion \
-        rsync \
+	pyqt5-dev-tools \
+	qtcreator \
+	rsync \
         sqlite3 \
         subversion \
         swig \
