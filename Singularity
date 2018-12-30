@@ -106,8 +106,20 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     
 # Install GRASS, then QGIS w/ Python, and latest SAGA-GIS for QGIS
     apt-get install -f -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass 
+	
+# Build CCTools
+    apt-get install -f -y locales
+    cd /tmp && \
+       wget -nv http://ccl.cse.nd.edu/software/files/cctools-7.0.9-source.tar.gz && \
+       tar xzf cctools-7.0.9-source.tar.gz && \
+       cd cctools-7.0.9-source && \
+       ./configure --prefix=/opt/osgeo && \
+       make && \
+       make install
+
+    rm -rf /tmp/build-dir /tmp/cctools*
 
 %labels
 Maintainer Tyson Lee Swetnam
-Version v0.8
-Date 2018-12-10
+Version v0.9
+Date 2018-12-30
