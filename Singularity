@@ -1,4 +1,3 @@
-
 BootStrap: debootstrap
 OSVersion: bionic
 MirrorURL: http://us.archive.ubuntu.com/ubuntu/
@@ -20,58 +19,48 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
     # be sure to have an updated system
     apt-get update && apt-get upgrade -y
-
+    
     # install Ubuntu dependencies and Python 
     apt-get install -f -y software-properties-common \
-        apt-utils \
-        bison\
-        build-essential \
-        flex \
-        g++ \
+	apt-utils \
+	bison\
+	build-essential \
+	flex \
+	g++ \
         gcc \
         gettext \
-        libcairo2 \
+	libcairo2 \
         libcairo2-dev \
-        libcanberra-gtk-module \
-        libcanberra-gtk3-module \
-        libwxbase3.0-dev \
+	libcanberra-gtk-module \
+	libcanberra-gtk3-module \
+	libwxbase3.0-dev \
         libwxgtk3.0-dev \
-        python-dev \
+	python-dev \
         python3-dev \
         python3-distutils \
-        texlive-extra-utils \
-        wget \
-        wx3.0-headers \
-        zlib1g-dev
-	
- apt-get install -f \
-        libproj-dev \
-        proj-data \
-        proj-bin -y
+	texlive-extra-utils \
+	wget \
+	wx3.0-headers \
+	zlib1g-dev 
+
+    apt-get install -f \
+	libproj-dev \
+	proj-data \
+	proj-bin -y
     apt-get install libgdal-dev python-gdal gdal-bin -y
     apt-get install -f -y \
-        libgeos-dev \
-        libgdal-doc
+	libgeos-dev \
+	libgdal-doc 
+# PDAL - still having an issue here
 #    apt-get install -vv -f -y \
-#       libpdal-dev \
-#       pdal \
-#       libpdal-plugin-python 
-    apt-get install -f -y netcdf-bin
-
-
-# Build CCTools
-    apt-get install -f -y locales
-    cd /tmp && \
-       wget -nv http://ccl.cse.nd.edu/software/files/cctools-7.0.8-source.tar.gz && \
-       tar xzf cctools-7.0.8-source.tar.gz && \
-       cd cctools-7.0.8-source && \
-       ./configure --prefix=/opt/osgeo && \
-       make && \
-       make install
-
+#	libpdal-dev \
+#	pdal \
+#	libpdal-plugin-python 
+    apt-get install -f -y netcdf-bin 
+    
 # set locale (this fixes an error we had in GRASS environment on startup)
       locale-gen en_GB en_GB.UTF-8
-      dpkg-reconfigure locales
+      dpkg-reconfigure locales 
       echo "LC_ALL=en_GB.UTF-8" >> /etc/environment
       echo "LANG=en_GB.UTF-8" >> /etc/environment
 
@@ -86,17 +75,17 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     ldconfig
 
 # once everything is built, we can install the GRASS extensions 
-
+    
     export LC_ALL=en_US.UTF-8 && \
     export LANG=en_US.UTF-8 && \
     export PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.4.0/bin:/opt/osgeo/grass-7.4.0/scripts/:$PATH && \
     export GISBASE=/opt/osgeo/grass-7.4.0 && \
     rm -rf mytmp_wgs84 && \
     grass74 -text -c epsg:3857 ${PWD}/mytmp_wgs84 -e && \
-    echo "g.extension -s extension=r.sun.mp ; g.extension -s extension=r.sun.hourly ; g.extension -s extension=r.sun.daily" | gra$
+    echo "g.extension -s extension=r.sun.mp ; g.extension -s extension=r.sun.hourly ; g.extension -s extension=r.sun.daily" | grass74 -text ${PWD}/mytmp_wgs84/PERMANENT
 
 # Install non-gis specific tools
-    apt-get install -f -y texlive-extra-utils
+    apt-get install -f -y texlive-extra-utils 
     apt-get install -f -y libudunits2-dev
 
 # Install Postgres (for PostGIS)
@@ -114,9 +103,9 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 # Add Ubuntugis ppa, should update to latest QGIS (3.4 Madeira)
     #add-apt-repository ppa:ubuntugis/ubuntugis
     apt-get -y update
-
+    
 # Install GRASS, then QGIS w/ Python, and latest SAGA-GIS for QGIS
-    apt-get install -f -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass
+    apt-get install -f -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass 
 
 %labels
 Maintainer Tyson Lee Swetnam
