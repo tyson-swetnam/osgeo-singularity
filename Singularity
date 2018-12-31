@@ -23,7 +23,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     # install Ubuntu dependencies and Python 
     apt-get install -f -y software-properties-common \
 	apt-utils \
-	bison \
+	bison\
 	build-essential \
 	flex \
 	g++ \
@@ -51,13 +51,24 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     apt-get install -f -y \
 	libgeos-dev \
 	libgdal-doc 
-# PDAL - still having an issue here
 #    apt-get install -vv -f -y \
 #	libpdal-dev \
 #	pdal \
 #	libpdal-plugin-python 
     apt-get install -f -y netcdf-bin 
-    
+
+# Build CCTools
+    apt-get install -f -y locales
+    cd /tmp && \
+       wget -nv http://ccl.cse.nd.edu/software/files/cctools-7.0.9-source.tar.gz && \
+       tar xzf cctools-7.0.9-source.tar.gz && \
+       cd cctools-7.0.9-source && \
+       ./configure --prefix=/opt/osgeo && \
+       make && \
+       make install
+
+    rm -rf /tmp/build-dir /tmp/cctools*
+
 # set locale (this fixes an error we had in GRASS environment on startup)
       locale-gen en_GB en_GB.UTF-8
       dpkg-reconfigure locales 
@@ -74,7 +85,8 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     echo "/opt/osgeo/grass-7.4.0/lib" >> grass.conf
     ldconfig
 
-# once everything is built, we can install the GRASS extensions    
+# once everything is built, we can install the GRASS extensions 
+    
     export LC_ALL=en_US.UTF-8 && \
     export LANG=en_US.UTF-8 && \
     export PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.4.0/bin:/opt/osgeo/grass-7.4.0/scripts/:$PATH && \
@@ -103,31 +115,8 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     #add-apt-repository ppa:ubuntugis/ubuntugis
     apt-get -y update
     
-# Install GRASS, then QGIS w/ Python, and then latest SAGA-GIS for QGIS
-    apt-get install libwxgtk3.0-dev libtiff5-dev libgdal-dev libproj-dev \
-    libexpat-dev wx-common libogdi3.2-dev unixodbc-dev
-    apt-get install g++ make automake libtool git
-    cd /opt
-    git clone git://git.code.sf.net/p/saga-gis/code saga-gis-code
-    cd /opt/saga-gis-code/saga-gis
-    autoreconf -fi
-    ./configure --enable-python
-    make
-    make install
-    cd
+# Install GRASS, then QGIS w/ Python, and latest SAGA-GIS for QGIS
     apt-get install -f -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass 
-	
-# Build CCTools
-    apt-get install -f -y locales
-    cd /tmp && \
-       wget -nv http://ccl.cse.nd.edu/software/files/cctools-7.0.9-source.tar.gz && \
-       tar xzf cctools-7.0.9-source.tar.gz && \
-       cd cctools-7.0.9-source && \
-       ./configure --prefix=/opt/osgeo && \
-       make && \
-       make install
-
-    rm -rf /tmp/build-dir /tmp/cctools*
 
 %labels
 Maintainer Tyson Lee Swetnam
