@@ -23,7 +23,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     # install Ubuntu dependencies and Python 
     apt-get install -f -y software-properties-common \
 	apt-utils \
-	bison\
+	bison \
 	build-essential \
 	flex \
 	g++ \
