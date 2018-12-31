@@ -74,8 +74,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     echo "/opt/osgeo/grass-7.4.0/lib" >> grass.conf
     ldconfig
 
-# once everything is built, we can install the GRASS extensions 
-    
+# once everything is built, we can install the GRASS extensions    
     export LC_ALL=en_US.UTF-8 && \
     export LANG=en_US.UTF-8 && \
     export PATH=/opt/osgeo/bin:/opt/osgeo/grass-7.4.0/bin:/opt/osgeo/grass-7.4.0/scripts/:$PATH && \
@@ -104,7 +103,18 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     #add-apt-repository ppa:ubuntugis/ubuntugis
     apt-get -y update
     
-# Install GRASS, then QGIS w/ Python, and latest SAGA-GIS for QGIS
+# Install GRASS, then QGIS w/ Python, and then latest SAGA-GIS for QGIS
+    apt-get install libwxgtk3.0-dev libtiff5-dev libgdal-dev libproj-dev \
+    libexpat-dev wx-common libogdi3.2-dev unixodbc-dev
+    apt-get install g++ make automake libtool git
+    cd /opt
+    git clone git://git.code.sf.net/p/saga-gis/code saga-gis-code
+    cd /opt/saga-gis-code/saga-gis
+    autoreconf -fi
+    ./configure --enable-python
+    make
+    make install
+    cd
     apt-get install -f -y --allow-unauthenticated qgis python-qgis qgis-plugin-grass 
 	
 # Build CCTools
@@ -122,4 +132,4 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 %labels
 Maintainer Tyson Lee Swetnam
 Version v0.9
-Date 2018-12-30
+Date 2018-12-31
