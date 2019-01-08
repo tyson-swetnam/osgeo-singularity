@@ -33,7 +33,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         libcairo2-dev \
 	libcanberra-gtk-module \
 	libcanberra-gtk3-module \
-	libtiff \
+	libtiff-dev \
 	libwxbase3.0-dev \
         libwxgtk3.0-dev \
 	python-dev \
