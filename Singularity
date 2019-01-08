@@ -1,5 +1,5 @@
 BootStrap: debootstrap
-OSVersion: bionic
+OSVersion: xenial
 MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 
 %setup
@@ -15,7 +15,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     export GISBASE GRASS_PROJSHARE LD_LIBRARY_PATH PATH PYTHONPATH
 
 %post
-    echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse" >> /etc/apt/sources.list
+    echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >> /etc/apt/sources.list
 
     # be sure to have an updated system
     apt-get update && apt-get upgrade -y
@@ -37,7 +37,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
         libwxgtk3.0-dev \
 	python-dev \
         python3-dev \
-        python3-distutils \
+        python3-distutils-extra \
 	texlive-extra-utils \
 	wget \
 	wx3.0-headers \
@@ -105,8 +105,8 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 # Add QGIS and GRASS to sources.list
     echo "" >> /etc/apt/sources.list
     echo "## QGIS source packages" >> /etc/apt/sources.list
-    echo "deb     https://qgis.org/ubuntu bionic main" >> /etc/apt/sources.list
-    echo "deb-src https://qgis.org/ubuntu bionic main" >> /etc/apt/sources.list
+    echo "deb     https://qgis.org/ubuntu xenial main" >> /etc/apt/sources.list
+    echo "deb-src https://qgis.org/ubuntu xenial main" >> /etc/apt/sources.list
 
 # Add QGIS key
     apt-key adv --keyserver keyserver.ubuntu.com --recv-key CAEB3DC3BDF7FB45
