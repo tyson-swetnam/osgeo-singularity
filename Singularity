@@ -15,59 +15,88 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     export GISBASE GRASS_PROJSHARE LD_LIBRARY_PATH PATH PYTHONPATH
 
 %post
-    echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >> /etc/apt/sources.list
+    echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >/etc/apt/sources.list
 
-    # be sure to have an updated system
-    apt-get update && apt-get upgrade -y
-    
-    # install Ubuntu dependencies and Python 
-    apt-get install -f -y software-properties-common \
-	apt-utils \
-	bison \
-	build-essential \
-	flex \
-	g++ \
+    apt-get update && apt-get install -y --no-install-recommends \
+        bison \
+        build-essential \
+        ccache \
+        checkinstall \
+        cmake \
+        curl \
+        ffmpeg2theora \
+        flex \
+        g++ \
         gcc \
         gettext \
-	libcairo2 \
+        ghostscript \
+        libavcodec-dev \
+        libavformat-dev \
+        libav-tools \
+        libavutil-dev \
+        libboost-program-options-dev \
+        libboost-thread-dev \
+        libcairo2 \
         libcairo2-dev \
-	libcanberra-gtk-module \
-	libcanberra-gtk3-module \
-	libtiff-dev \
-	libwxbase3.0-dev \
+        libffmpegthumbnailer-dev \
+        libfftw3-3 \
+        libfftw3-dev \
+        libfreetype6-dev \
+        libgcc1 \
+        libglu1-mesa-dev \
+        libgsl-dev \
+        libgtk2.0-dev \
+        libgtkmm-3.0-dev \
+        libjasper-dev \
+        liblas-c-dev \
+        libncurses5-dev \
+        libnetcdf-dev \
+        libperl-dev \
+        libpng12-dev \
+        libpnglite-dev \
+        libpq-dev \
+        libproj-dev \
+        libreadline6 \
+        libreadline6-dev \
+        libsqlite3-dev \
+        libswscale-dev \
+        libtiff5-dev \
+        libwxbase3.0-dev   \
         libwxgtk3.0-dev \
-	python-dev \
-        python3-dev \
-        python3-distutils-extra \
-	texlive-extra-utils \
-	wget \
-	wx3.0-headers \
-	zlib1g-dev 
+        libxmu-dev \
+        libxmu-dev \
+        libzmq3-dev \
+        netcdf-bin \
+        openjdk-8-jdk \
+        pkg-config \
+        proj-bin \
+        proj-data \
+        python \
+        python-dateutil \
+        python-dev \
+        python-numpy \
+        python-opengl \
+        python-wxgtk3.0 \
+        python-wxtools \
+        python-wxversion \
+        rsync \
+        sqlite3 \
+        subversion \
+        swig \
+        unzip \
+        vim \
+        wget \
+        wx3.0-headers \
+        wx-common \
+        zlib1g-dev \
 
-    apt-get install -f \
-	libproj-dev \
-	proj-data \
-	proj-bin -y
-    apt-get install libgdal-dev python-gdal gdal-bin -y
-    apt-get install -f -y \
-	libgeos-dev \
-	libgdal-doc 
-#    apt-get install -vv -f -y \
-#	libpdal-dev \
-#	pdal \
-#	libpdal-plugin-python 
-    apt-get install -f -y netcdf-bin 
-
-# Build CCTools
-    apt-get install -f -y locales
     cd /tmp && \
-       wget -nv http://ccl.cse.nd.edu/software/files/cctools-7.0.9-source.tar.gz && \
-       tar xzf cctools-7.0.9-source.tar.gz && \
-       cd cctools-7.0.9-source && \
-       ./configure --prefix=/opt/osgeo && \
+       wget -nv http://ccl.cse.nd.edu/software/files/cctools-6.0.16-source.tar.gz && \
+       tar xzf cctools-6.0.16-source.tar.gz && \
+       cd cctools-6.0.16-source && \
+       ./configure --prefix=/opt/eemt && \
        make && \
        make install
-
     rm -rf /tmp/build-dir /tmp/cctools*
 
 # set locale (this fixes an error we had in GRASS environment on startup)
@@ -122,4 +151,4 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 %labels
 Maintainer Tyson Lee Swetnam
 Version v0.9
-Date 2019-01-08
+Date 2019-01-11
