@@ -1,10 +1,9 @@
-BootStrap: debootstrap
-OSVersion: xenial
-MirrorURL: http://us.archive.ubuntu.com/ubuntu/
+Bootstrap: docker
+From:  cyverse/ubuntu18-xfce-desktop:latest
 
 %setup
     cp gis_dependency.makefile $SINGULARITY_ROOTFS/tmp/
-    apt-get install debootstrap
+    # apt-get install debootstrap
 
 %environment
     GISBASE=/opt/osgeo/grass-7.4.0
@@ -15,7 +14,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     export GISBASE GRASS_PROJSHARE LD_LIBRARY_PATH PATH PYTHONPATH
 
 %post
-    echo "deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse" >/etc/apt/sources.list
+    echo "deb http://us.archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse" >/etc/apt/sources.list
 
     apt-get update && apt-get install -y --no-install-recommends \
         bison \
@@ -135,8 +134,8 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 # Add QGIS and GRASS to sources.list
     echo "" >> /etc/apt/sources.list
     echo "## QGIS source packages" >> /etc/apt/sources.list
-    echo "deb     https://qgis.org/ubuntu xenial main" >> /etc/apt/sources.list
-    echo "deb-src https://qgis.org/ubuntu xenial main" >> /etc/apt/sources.list
+    echo "deb     https://qgis.org/ubuntu bionic main" >> /etc/apt/sources.list
+    echo "deb-src https://qgis.org/ubuntu bionic main" >> /etc/apt/sources.list
 
 # Add QGIS key
     apt-key adv --keyserver keyserver.ubuntu.com --recv-key CAEB3DC3BDF7FB45
