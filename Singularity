@@ -1,5 +1,5 @@
 Bootstrap: docker
-From:  nvidia/1.0-glvnd-runtime-ubuntu18.04
+From:  ubuntu:18.04
 
 %setup
     cp gis_dependency.makefile $SINGULARITY_ROOTFS/tmp/
